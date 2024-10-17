@@ -4,9 +4,9 @@ import "aos/dist/aos.css";
 import Aos from "aos";
 import axios from "axios";
 
-function TwoMillion() {
+function FiveMillion() {
   const [loading, setloading] = useState(false);
-  const url = "http://192.168.10.190:5053/v1/getUserDetail/getWinner/1";
+  const url = "http://192.168.10.190:5053/v1/getUserDetail/getWinner/2";
   const getUserDetails = async () => {
     setloading(true);
     try {
@@ -53,12 +53,12 @@ function TwoMillion() {
 
         {/* Container for jackpot spin and buttons */}
         <div
-          className="h-[calc(73%)] fixed bottom-0 left-[4%] w-[calc(70%)] 
+          className="h-[calc(73%)] fixed bottom-0 left-[5%] w-[calc(70%)] 
                    bg-[linear-gradient(30deg,_#172554,#070545,_#172554)] noise-overlay-box
                    rounded-t-[50px] p-16 z-30 flex items-center justify-start "
         >
           <img
-            src="/img/2say.png"
+            src="/img/5say.png"
             alt="beleg.png"
             className="h-[calc(70%)] ml-[calc(10%)]"
           />
@@ -83,13 +83,14 @@ function TwoMillion() {
 
           {/* Box 1 */}
           <div className="bg-white rounded-[40px] w-full mb-4 py-2 px-4 flex items-center justify-center shadow-md z-40">
-            <p className="text-blue-950 text-5xl font-bold text-center">
+            <p className="text-black text-5xl font-bold text-center">
               {resultObject.totalParticipants
                 ? resultObject.totalParticipants
                 : 0}
             </p>
           </div>
 
+          {/* Box 2 */}
           {/* Box 2 */}
           <div className="bg-gradient-to-b from-gray-200 to-lightblue rounded-[40px] h-full w-full mb-2 p-4 flex flex-col items-center justify-start shadow-md z-40">
             {stage != 0 && stage != 5 && (
@@ -143,4 +144,4 @@ function TwoMillion() {
   );
 }
 
-export default TwoMillion;
+export default FiveMillion;

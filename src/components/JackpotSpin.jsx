@@ -6,35 +6,72 @@ export default function SlotMachine({ result, setStage, stage }) {
   useEffect(() => {
     Aos.init({ duration: 1000 });
   });
-  const [jackpotWheels, setJackpotWheels] = useState([
-    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-  ]);
+
+  const jackpotWheels = [
+    [
+      result?.winnerId ? result?.winnerId[1] : "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+    ],
+    [
+      result?.winnerId ? result?.winnerId[2] : "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+    ],
+    [
+      result?.winnerId ? result?.winnerId[3] : "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+    ],
+    [
+      result?.winnerId ? result?.winnerId[4] : "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+    ],
+    [
+      result?.winnerId ? result?.winnerId[5] : "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+    ],
+  ];
   const [spinned, setSpinned] = useState(new Array(5).fill(false)); // Change to an array for each wheel
   const [animated, setAnimated] = useState(new Array(5).fill(false)); // Change to an array for each wheel
   const wheelRefs = useRef([]);
-
-  // Function to shuffle an array
-  const shuffleArray = (array) => {
-    const shuffledArray = [...array];
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ];
-    }
-    return shuffledArray;
-  };
-
-  // Randomize the jackpot wheels
-  const randomizeWheels = () => {
-    const newWheels = jackpotWheels.map((wheel) => shuffleArray(wheel));
-    setJackpotWheels(newWheels);
-  };
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -60,7 +97,7 @@ export default function SlotMachine({ result, setStage, stage }) {
     setSpinned(new Array(jackpotWheels.length).fill(false)); // Reset individual spin states
     setAnimated(new Array(jackpotWheels.length).fill(false)); // Reset individual spin states
 
-    randomizeWheels();
+    // randomizeWheels();
   }, []);
 
   const startJackpot = () => {
@@ -114,7 +151,9 @@ export default function SlotMachine({ result, setStage, stage }) {
         <div className="relative flex select-none">
           <div className="jackpot flex">
             <div className="jackpot__wheel2">
-              <span className="text-[90px] font-bold leading-none py-1">8</span>
+              <span className="text-[90px] font-bold leading-[100px] py-1">
+                {result?.winnerId ? result?.winnerId[0] : "0"}
+              </span>
             </div>
             <span className="text-[90px] text-white font-bold leading-none py-1">
               -
@@ -131,11 +170,30 @@ export default function SlotMachine({ result, setStage, stage }) {
                   {wheel.map((item, idx) => (
                     <li
                       key={idx}
-                      className={`text-[90px] font-bold flex items-center justify-center w-11 leading-none py-1 ${
-                        !animated[index] && "pt-5" // Check individual wheel's spin state
-                      }`}
+                      className={`text-[90px] font-bold flex items-center justify-center w-11 leading-none py-1 `}
                     >
-                      {spinned[index] ? item : animated[index] ? item : "*"}
+                      {spinned[index] ? (
+                        <div
+                          className="bg-white px-2  h-[110px] flex items-center justify-center
+                         rounded-2xl mt-[-4px] pt-[-10px] leading-relaxed"
+                        >
+                          {item}
+                        </div>
+                      ) : animated[index] ? (
+                        <div
+                          className="bg-white px-2  h-[110px] flex items-center justify-center
+                         rounded-2xl mt-[-4px] pt-[-10px] leading-relaxed"
+                        >
+                          {item}
+                        </div>
+                      ) : (
+                        <div
+                          className="bg-white px-4  h-[110px] flex items-center justify-center
+                         rounded-2xl pt-2  mt-[-4px] "
+                        >
+                          *
+                        </div>
+                      )}
                     </li>
                   ))}
                 </ul>
