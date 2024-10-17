@@ -1,0 +1,33 @@
+body {
+  position: relative; /* Make sure the body is relative for positioning the overlays */
+  background-image: url("/img/bg.png"); /* Your background image path */
+  background-size: cover; /* Ensures the image covers the entire body */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  height: 100vh; /* Ensure the body takes the full viewport height */
+  overflow: hidden; /* Prevents overflow from any child elements */
+}
+
+.custom-body::before {
+  content: ""; /* Required for pseudo-elements */
+  position: absolute; /* Positioning for the overlay */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.4); /* Black color with 20% opacity */
+  z-index: 1; /* Place it below the noise overlay */
+}
+
+.custom-body::after {
+  content: ""; /* Required for pseudo-elements */
+  position: absolute; /* Positioning for the noise */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background: url("https://grainy-gradients.vercel.app/noise.svg"); /* Your noise texture */
+  opacity: 0.01; /* Adjust the opacity for the noise effect */
+  z-index: 10000002; /* Place it above the black overlay */
+  pointer-events: none; /* Allow interactions to pass through */
+}

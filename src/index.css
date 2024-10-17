@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.noise-overlay {
+  position: fixed; /* Overlay is fixed */
+  top: 0; /* Covers the entire viewport */
+  left: 0; /* Covers the entire viewport */
+  right: 0; /* Covers the entire viewport */
+  bottom: 0; /* Covers the entire viewport */
+  /* rgba(0, 0, 139, 0.7), */
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(15, 96, 15, 0.7),
+      rgba(9, 9, 96, 0.7),
+      rgba(15, 96, 15, 0.7),
+      rgba(0, 0, 139, 0.7) /* Light green */
+    ),
+    url("/img/bg.png"); /* Path to your noise texture */
+  background-size: cover; /* Cover the entire area */
+  background-blend-mode: overlay; /* Blend the noise texture with the gradient */
+  pointer-events: none; /* Allows clicks to pass through */
+  z-index: 1;
+}
+
+.noise-overlay-box {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(3, 3, 83, 0.7),
+      rgba(3, 3, 83, 0.7),
+      rgba(3, 3, 83, 0.7)
+    ),
+    url("/img/bg.png");
+  background-size: cover;
+  background-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.noise-overlay-box-side {
+  background-image: linear-gradient(
+      to bottom right,
+      rgba(4, 4, 96, 0.7),
+      rgba(3, 3, 83, 0.7),
+      rgba(3, 3, 83, 0.7)
+    ),
+    url("/img/bg.png");
+  background-size: cover;
+  background-blend-mode: overlay;
+  pointer-events: none;
+}
